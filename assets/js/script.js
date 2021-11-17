@@ -10,30 +10,14 @@ var taskFormHandler = function(event) {
     if (!taskNameInput || !taskTypeInput) {
         alert("You need to fill out the task form!");
         return false;
-
-    if (true) {
-        // this will run because true is true
-        console.log("Is true true? Yes.");
-        }
-        
-    if (false) {
-        // this will not run because false is not true
-        console.log("Is false true? No.");
-        }
-        
-    if (3 === 10 || "a" === "a") {
-        // this will run because at least one of the conditions is true
-        console.log("Does 3 equal 10? No.");
-        console.log("Does the letter 'a' equal the letter 'a'? Yes.");
-        }
-        
-    if (3 === 10 && "a" === "a") {
-        // this will not run because both conditions have to be true to run
-        console.log("Does 3 equal 10? No.");
-        console.log("Does the letter 'a' equal the letter 'a'? Yes.");
-        }
-    formEl.reset();
 }
+
+    formEl.reset();
+
+    // reset form fields for next task to be entered
+    document.querySelector("input[name='task-name']").value = "";
+    document.querySelector("select[name='task-type']").selectedIndex = 0;
+
     // package up data as an object
     var taskDataObj = {
     name: taskNameInput,
@@ -56,6 +40,8 @@ var createTaskEl = function(taskDataObj) {
     taskInfoEl.className = "task-info";
     taskInfoEl.innerHTML = "<h3 class='task-name'>" + taskDataObj.name + "</h3><span class='task-type'>" + taskDataObj.type + "</span>";
     listItemEl.appendChild(taskInfoEl);
+
+    console.dir(listItemEl);
 
     // add entire list item to list
     tasksToDoEl.appendChild(listItemEl);
